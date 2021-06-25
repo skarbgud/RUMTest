@@ -1,11 +1,28 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense, lazy } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { Home, About, Posts, Detail, DetailView } from '../pages';
-import Menu from '../components/Menu';
+import { Home, Posts, Detail, DetailView } from '../pages';
+
 import { ApmRoute } from '@elastic/apm-rum-react';
 import { init as initApm } from '@elastic/apm-rum';
-// import BOOMR from 'boomerangjs';
+import axios from 'axios';
+import Menu from '../components/Menu';
+// const Menu = lazy(() => {
+//     return Promise.all([
+//         import('../components/Menu'),
+//         new Promise(resolve => setTimeout(resolve, 300000))
+//     ])
+//     .then(([moduleExports]) => moduleExports);
+// });
 
+const About = lazy(() => {
+    return Promise.all([
+        import('../pages/About'),
+        new Promise(resolve => setTimeout(resolve, 1000))
+    ])
+    .then(([moduleExports]) => moduleExports);
+});
+
+// import BOOMR from 'boomerangjs';
 
 
 const apm = initApm({
@@ -22,9 +39,11 @@ apm.setInitialPageLoadName("react")
 
 class App extends Component {
     render() {
+        axios.get('fdsfdsfss/fdsfs');
         return (
             <div>
-                {/* <ApmRoute
+                <Suspense fallback={<div>Loading</div>}>
+                <ApmRoute
                 exact
                 path="/"
                 component={() => (
@@ -34,17 +53,19 @@ class App extends Component {
                     }}
                     />
                 )}
-                /> */}
-                {/* <ApmRoute path="/" component={Home} /> */}
+                />
+                <ApmRoute path="/" component={Home} />
                 <Menu/>
                 <Route exact path="/" component={Home}/>
                 <Switch>
                     <Route path="/about/:name" component={About}/>
                     <Route path="/about" component={About}/>
                 </Switch>
+                <Route path="/post" component={Posts}/>
                 <Route path="/posts" component={Posts}/>
                 <Route path="/detail" component={Detail}/>
                 <Route path="/detail/view" component={DetailView}/>
+                </Suspense>
             </div>
         );
     }

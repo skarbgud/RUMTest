@@ -36,19 +36,23 @@
       });
     </script>
     <!-- 세마텍스트 -->
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
       (function(e,r,n,t,s){var a=[];e[s]=function(){a.push(arguments)};e[s].queue=a;  var o=[];var i=[];var c=true;var p=void 0;if(window.PerformanceObserver&&  window.PerformanceObserver.supportedEntryTypes&&(  PerformanceObserver.supportedEntryTypes.indexOf("longtask")>=0||  PerformanceObserver.supportedEntryTypes.indexOf("element")>=0)){  p=new PerformanceObserver(function(e){e.getEntries().forEach(function(e){  switch(e.entryType){case"element":i.push(e);break;case"longtask":o.push(e);break;  default:break}})});p.observe({entryTypes:["longtask","element"]})}e[s+"lt"]={  longTasks:o,timingElements:i,inPageLoad:c,observer:p};if(t){var u=r.createElement(n);  u.async=1;u.src=t;var f=r.getElementsByTagName(n)[0];f.parentNode.insertBefore(u,f)}})
       (window,document,"script","//cdn.sematext.com/experience.js","strum");
     </script>
     <script type="text/javascript">
       strum('config', { token: '395311e0-b3d6-414b-833f-dd7bb8e14642', 'receiverUrl': 'http://192.168.121.164:3000/sematext' });
-    </script>
+    </script> -->
     <!-- 세마텍스트 -->
 
     <!-- 데이터독 -->
-    <script
+    <!-- <script
         src="http://192.168.121.153:81/datadog-rum.js"
         type="text/javascript">
+    </script> -->
+    <script
+    src="http://127.0.0.1:5500/dd.js"
+    type="text/javascript">
     </script>
     <script>
         window.DD_RUM && window.DD_RUM.init({
